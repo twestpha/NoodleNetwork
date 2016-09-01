@@ -1,0 +1,17 @@
+# Comment
+# number of iterations this neural net has been optimized
+IT
+0
+L1
+1 34.0
+2 23.0
+3 14.0
+L2
+1 1 15.0 2 12.0 3 0.2
+# First, index of ourselves
+# second, index of neuron from above layer (int)
+# third, weight of that index (float)
+# repeat until no more inputs (don't create more than we need to)
+2 3 12.0
+L3
+1 1 -13.0 2 32.0

@@ -1,8 +1,22 @@
 #include <stdio.h>
 
+#include "NeuralNetwork.hpp"
 #include "Neuron.hpp"
 
-int main(){
+int main(int argc, const char** argv){
+
+    // -t, training mode
+    // requires a *.ndl (use for node layers)
+    // and a *.tst, for training on
+
+    // -q, query  mode
+    // requires a *.ndl (the neural network)
+    // and will output the answer based on the inputs
+
+    // parse cmd line args, decide on mode, set vars
+
+    NeuralNetwork noodle;
+
     Neuron* l1n1 = new Neuron();
     l1n1->AddInput(NULL, 0.5f);
 

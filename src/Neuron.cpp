@@ -5,7 +5,7 @@
 
 Neuron::Neuron(){
     value = 0.0f;
-    dirty = true;
+    shouldRecompute = true;
 
     used = 0;
     max = 1;
@@ -43,16 +43,32 @@ void Neuron::AddInput(Neuron* input, double weight){
 
         used++;
 
-        dirty = true;
+        shouldRecompute = true;
     } else {
-        dirty = false;
+        shouldRecompute = false;
         value = weight;
     }
 }
 
+void Neuron::ModifyWeight(Neuron* input, double newWeight){
+    // slow as fuck... Hopefully we won't use this, we'll use something else for backtracking
+    // or, the backtracking program necessitates O(n), so either way, fuck it.
+    if(input){
+        for(int i = 0; i < used; ++i){
+            if(inputs[i] == input){
+                weights[i] = newWeight;
+            }
+        }
+
+        shouldRecompute = true;
+    } else {
+        value = newWeight;
+    }
+
+}
 
 double Neuron::GetValue(){
-    if(dirty){
+    if(shouldRecompute){
         double sum = 0.0f;
 
         for(int i = 0; i < used; ++i){
@@ -62,12 +78,8 @@ double Neuron::GetValue(){
         }
 
         value = sum;
-        dirty = false;
+        shouldRecompute = false;
     }
 
     return value;
-}
-
-bool Neuron::IsDirty(){
-    return dirty;
 }
