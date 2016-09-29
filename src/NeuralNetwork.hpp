@@ -1,20 +1,17 @@
 #ifndef NEURAL_NETWORK_H
 #define NEURAL_NETWORK_H
 
-enum Mode {
-    TrainingMode, QueryMode
-};
+#include "Neuron.hpp"
 
 class NeuralNetwork {
 public:
     NeuralNetwork();
 
-    void SetMode(Mode mode);
-
-    void LoadFromFile(const char* filename);
+    void Run();
 private:
-    Mode mode;
-    // stuff...
+    int iterations;
+    Neuron* inputs[2];
+    Neuron* output;
 };
 
 #endif
